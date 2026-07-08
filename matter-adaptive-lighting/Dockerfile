@@ -8,4 +8,6 @@ COPY src /opt/app/src
 RUN python3 -m venv /opt/venv \
     && /opt/venv/bin/pip install --no-cache-dir /opt/app
 
-CMD ["/opt/venv/bin/python", "-u", "-m", "matter_adaptive_lighting", "run"]
+# Unbuffered so logs reach `ha apps logs` promptly (the console script has no -u).
+ENV PYTHONUNBUFFERED=1
+CMD ["/opt/venv/bin/matter-adaptive-lighting", "run"]
