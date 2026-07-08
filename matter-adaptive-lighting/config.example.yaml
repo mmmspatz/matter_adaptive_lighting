@@ -1,0 +1,15 @@
+# Copy to config.yaml for bare-metal development runs.
+# As a Home Assistant add-on, the same keys come from the add-on options UI instead.
+matter_server: ws://homeassistant.local:5580/ws
+latitude: 42.36
+longitude: -71.06
+update_interval_seconds: 300
+transition_seconds: 2
+curve:
+  min_kelvin: 2700
+  max_kelvin: 5500
+  low_elevation_deg: 0
+  high_elevation_deg: 15
+lights:
+  - node_id: 1   # find node ids with: python -m matter_adaptive_lighting list
+    # max_kelvin: 5000    # optional per-light curve overrides (flat keys)

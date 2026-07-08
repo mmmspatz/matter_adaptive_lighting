@@ -1,0 +1,40 @@
+name: Matter Adaptive Lighting
+version: "0.1.0"
+slug: matter_adaptive_lighting
+description: Sun-tracking color temperature for Matter CCT lights. Never touches on/off or brightness.
+url: https://github.com/mmmspatz/matter_adaptive_lighting
+arch:
+  - aarch64
+  - amd64
+init: false
+startup: services
+options:
+  matter_server: ws://core-matter-server:5580/ws
+  latitude: 42.36
+  longitude: -71.06
+  update_interval_seconds: 300
+  transition_seconds: 2.0
+  curve:
+    min_kelvin: 2700
+    max_kelvin: 5500
+    low_elevation_deg: 0.0
+    high_elevation_deg: 15.0
+  lights:
+    - node_id: 59
+schema:
+  matter_server: str
+  latitude: float(-90,90)
+  longitude: float(-180,180)
+  update_interval_seconds: int(10,86400)
+  transition_seconds: float(0,60)
+  curve:
+    min_kelvin: int(1000,20000)
+    max_kelvin: int(1000,20000)
+    low_elevation_deg: float(-90,90)
+    high_elevation_deg: float(-90,90)
+  lights:
+    - node_id: int
+      min_kelvin: int(1000,20000)?
+      max_kelvin: int(1000,20000)?
+      low_elevation_deg: float(-90,90)?
+      high_elevation_deg: float(-90,90)?
