@@ -41,7 +41,11 @@ pyenv exec python -m venv .venv
 ```
 
 Build backend is `uv_build`; `ty` is Astral's (still 0.0.x, pre-1.0) type
-checker. Config for all three lives in `pyproject.toml`.
+checker. Config for all three lives in `pyproject.toml`. Runtime deps are
+pinned in `matter-adaptive-lighting/uv.lock`; the add-on image installs from it
+with `uv sync --frozen` (see Dockerfile), so builds are reproducible. After
+editing `dependencies` in `pyproject.toml`, regenerate the lock:
+`.venv/bin/uv lock --project matter-adaptive-lighting`.
 
 Dev config: copy `matter-adaptive-lighting/config.example.yaml` to
 `./config.yaml` (gitignored). CLI:
